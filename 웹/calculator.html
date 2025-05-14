@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+		width: 500px;
+		height: 300px;
+	}
+	table, tr, td {
+		border: 10px groove white;
+	}
+	td{
+		width: 100px;
+		height: 100px;
+	}
+	button{
+		width: 100%;
+		height: 100%;
+		font-size: 30px;
+	}
+</style>
+<script>
+function num(n) {
+	document.getElementsByTagName("input")[0].value += n
+}
+
+function cal(){
+	let code = document.getElementsByTagName("input")[0].value
+	let numbers = []
+	let opcode = []
+	let sum
+	let str = ""
+	for (let c of code){
+		if (c === "+" || c === "-" || c === "*" || c === "/" || c === "%"){
+			numbers.push(parseFloat(str))
+			str = ""
+			opcode.push(c)
+		}else{
+			str += c
+		}
+	}
+	if (str !== "") {
+		  numbers.push(parseFloat(str));
+		}
+	sum = numbers[0]
+	for (let i = 0; i < opcode.length;i++){
+		switch(opcode[i]){
+		case '+':
+			sum += numbers[i+1]
+			break
+		case '-':
+			sum -= numbers[i+1]
+			break
+		case '*':
+			sum *= numbers[i+1]
+			break
+		case '/':
+			sum /= numbers[i+1]
+			break
+		case '%':
+			sum %= numbers[i+1]
+			break	
+		}
+	}
+	document.getElementsByTagName("input")[0].value = String(sum)
+}
+
+
+window.onload = function() {
+	for(let e of document.getElementsByClassName("num")){
+		e.onclick = function(){num(e.innerText)}
+	}
+	
+	document.getElementById("cal").onclick = function(){cal()}
+	document.getElementById("clear").onclick = function(){
+		document.getElementsByTagName("input")[0].value = ""
+	}
+
+	
+	
+}
+</script>
+</head>
+<body>
+<table>
+<tr><td colspan="4"><input type="text" style="width: 98%; height: 92%; font-size: 30px;"></td></tr>
+<tr><td><button class="num">7</button></td>
+<td><button class="num">8</button></td>
+<td><button class="num">9</button></td>
+<td><button id="clear">Clear</button></td></tr>
+<tr><td><button class="num">4</button></td>
+<td><button class="num">5</button></td>
+<td><button class="num">6</button></td>
+<td><button class="num">+</button></td></tr>
+<tr><td><button class="num">1</button></td>
+<td><button class="num">2</button></td>
+<td><button class="num">3</button></td>
+<td><button class="num">-</button></td></tr>
+<tr><td><button class="num">.</button></td>
+<td><button class="num">0</button></td>
+<td><button class="num">/</button></td>
+<td><button class="num">*</button></td></tr>
+<tr><td colspan="1"><button class="num">%</button></td>
+<td colspan="3"><button id="cal">=</button></td></tr>
+</table>
+</body>
+</html>
