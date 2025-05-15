@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.circle {
+		background-color: rgb(255, 0, 0);
+		width: 3px;
+		height: 3px;
+		margin: 10px;
+		border-radius: 50%;
+		position: absolute;
+	}
+.rect {
+		background-color: rgba(255, 255, 255, 0);
+		width: 22px;
+		height: 25px;
+		margin: 11px;
+		position: absolute;
+		z-index: 1;
+	}	
+#tooltip {
+position: absolute;
+color: #fff;
+background-color: rgba(0,0,0,0.6);
+padding: 8px 10px;
+z-index: 10;
+}
+img{
+border-width:3px; 
+border-style:solid; 
+border-color:rgb(0, 0, 0);
+}
+</style>
+<script>
+function showTime(cityName, GMT, event) {
+    const now = new Date();
+    const timeString = new Intl.DateTimeFormat('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(new Date(now.getTime() + parseInt(GMT)*60*60*1000));
+    const tooltip = document.getElementById('tooltip');
+    tooltip.innerHTML = `<b>${cityName}</b><br>${timeString}`;
+    tooltip.style.left = (event.pageX + 10) + 'px';
+    tooltip.style.top = (event.pageY + 10) + 'px';
+    tooltip.style.display = 'block';
+  }
+  function hideTime() {
+    document.getElementById('tooltip').style.display = 'none';
+  }
+  
+  window.onload = function(){
+	  for (let area of document.getElementsByTagName("area")){
+		  area.onmouseover = function(){showTime(area.title, area.dataset.gmt, event)}
+		  area.onmouseout = function(){hideTime()}
+	  }
+	  for (let rect of document.getElementsByClassName("rect")){
+		  rect.onmouseover = function(){this.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'}
+		  rect.onmouseout = function(){this.style.backgroundColor = 'rgba(255, 255, 255, 0)'} 
+	  }
+	  
+  }
+</script>
+</head>
+<body>
+
+<img src="./images/img_map_wrdtm_v3.jpg" usemap="#worldMap" />
+<map name="worldMap">
+  <area target="" data-GMT="0" alt="서울" title="서울" href="" coords="247,140,6" shape="circle">
+  <area target="" data-GMT="-9" alt="런던" title="런던" href="" coords="51,110,5" shape="circle">
+  <area target="" data-GMT="-6" alt="모스크바" title="모스크바" href="" coords="112,94,4" shape="circle">
+  <area target="" data-GMT="-5" alt="두바이" title="두바이" href="" coords="137,167,5" shape="circle">
+  <area target="" data-GMT="-7" alt="케이프타운" title="케이프타운" href="" coords="89,252,6" shape="circle">
+  <area target="" data-GMT="1" alt="시드니" title="시드니" href="" coords="281,246,5" shape="circle">
+  <area target="" data-GMT="-17" alt="벤쿠버" title="벤쿠버" href="" coords="401,101,6" shape="circle">
+  <area target="" data-GMT="-14" alt="뉴욕" title="뉴욕" href="" coords="487,125,5" shape="circle">
+  <area target="" data-GMT="-12" alt="상파울루" title="상파울루" href="" coords="531,233,5" shape="circle">
+  <area target="" data-GMT="-15" alt="멕시코시티" title="멕시코시티" href="" coords="447,174,8" shape="circle">
+  <area target="" data-GMT="-2" alt="자카르타" title="자카르타" href="" coords="209,202,6" shape="circle">  
+</map>
+<div id="tooltip"></div>
+<div class="circle" style="left: 247px; top: 140px; font-size: 10px;">seoul</div>
+<div class="circle" style="left: 51px; top: 110px; font-size: 10px;">lunDawn</div>
+<div class="circle" style="left: 112px; top: 94px; font-size: 10px;">moskVar</div>
+<div class="circle" style="left: 137px; top: 167px; font-size: 10px;">doBy</div>
+<div class="circle" style="left: 89px; top: 252px; font-size: 10px;">capeTown</div>
+<div class="circle" style="left: 281px; top: 246px; font-size: 10px;">seedny</div>
+<div class="circle" style="left: 401px; top: 101px; font-size: 10px;">venquber</div>
+<div class="circle" style="left: 487px; top: 125px; font-size: 10px;">newYork</div>
+<div class="circle" style="left: 531px; top: 233px; font-size: 10px;">sangpaulo</div>
+<div class="circle" style="left: 447px; top: 174px; font-size: 10px;">macykoCity</div>
+<div class="circle" style="left: 209px; top: 202px; font-size: 10px;">zakarta</div>
+
+<div class="rect" style="left: 37px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 59px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 81px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 103px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 125px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 147px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 169px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 191px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 213px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 235px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 257px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 279px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 301px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 323px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 345px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 367px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 389px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 411px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 433px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 455px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 477px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 499px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 521px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 543px; top: 310px; font-size: 10px;"></div>
+<div class="rect" style="left: 565px; top: 310px; font-size: 10px;"></div>
+</body>
+</html>
